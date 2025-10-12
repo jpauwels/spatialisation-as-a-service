@@ -1,5 +1,4 @@
-musdb
-museval
 spleeter==${SPLEETER_VERSION}
+soundfile
 boto3
 awslambdaric

@@ -28,16 +28,14 @@ def handler(event, context):
                      Key=key, Filename=local_filename)
 
     if 'stem-count' in event.keys():
-        if event['stem-count']['val'] == 2:
-            separator = Separator('spleeter:2stems', multiprocess=False, stft_backend='tensorflow')
-        elif event['stem-count']['val'] == 4:
-            separator = Separator('spleeter:4stems', multiprocess=False, stft_backend='tensorflow')
+        if event['stem-count']['val'] == 4:
+            separator = Separator('spleeter:4stems', multiprocess=False)
         elif event['stem-count']['val'] == 5:
-            separator = Separator('spleeter:5stems', multiprocess=False, stft_backend='tensorflow')
+            separator = Separator('spleeter:5stems', multiprocess=False)
         else:
-            separator = Separator('spleeter:2stems', multiprocess=False, stft_backend='tensorflow')
+            separator = Separator('spleeter:2stems', multiprocess=False)
     else:
-        separator = Separator('spleeter:2stems', multiprocess=False, stft_backend='tensorflow')
+        separator = Separator('spleeter:2stems', multiprocess=False)
 
     audio_loader = AudioAdapter.default()
     sample_rate = 44100

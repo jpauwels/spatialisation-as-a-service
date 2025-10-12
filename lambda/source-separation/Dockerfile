@@ -1,9 +1,9 @@
 # Define global args
 ARG FUNCTION_DIR="/function"
-ARG BASE=python:3.9
+ARG BASE=python:3.10-slim
 
 # Pull base python image
-FROM ${BASE} as build-image
+FROM ${BASE} AS build-image
 
 # Install dependencies needed for lambda runtime API
 RUN apt-get update && \
@@ -16,8 +16,8 @@ RUN apt-get update && \
 
 # Declare args for build
 
-ARG SPLEETER_VERSION=2.3.2
-ENV MODEL_PATH app/pretrained_models
+ARG SPLEETER_VERSION=2.4.2
+ENV MODEL_PATH=app/pretrained_models
 ARG FUNCTION_DIR
 RUN mkdir -p ${FUNCTION_DIR}
 
