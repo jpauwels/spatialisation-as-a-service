@@ -51,7 +51,7 @@ invocation_response lambda_handler(invocation_request const &req, Client::Client
         auto localDir = Aws::String("tmp/") + keys[i].AsString();
         auto remoteDir = folder + "/" + keys[i].AsString();
         auto transfer_handle = transfer_manager->DownloadFile(bucket, remoteDir, localDir);
-        spdlog::get("console")->info("Attempting to download file from s3");
+        spdlog::get("console")->info("Attempting to download file " + remoteDir + " from s3 bucket " + bucket);
         transfer_handle->WaitUntilFinished();
         bool download_success = transfer_handle->GetStatus() == TransferStatus::COMPLETED;
         if (download_success) {
