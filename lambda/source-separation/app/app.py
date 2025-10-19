@@ -8,6 +8,7 @@ from spleeter.audio.adapter import AudioAdapter
 
 ACCESS_KEY = os.environ['ACCESS_KEY']
 SECRET_KEY = os.environ['SECRET_KEY']
+OUTPUT_BUCKET = os.environ['OUTPUT_BUCKET']
 
 
 def handler(event, context):
@@ -20,7 +21,6 @@ def handler(event, context):
     bucket_name = event['detail']['bucket']['name']
     key = event['detail']['object']['key']
     local_filename = "/tmp/input"
-    output_bucket_name = "saas-stems"
 
     s3 = session.client('s3')
 
@@ -51,8 +51,8 @@ def handler(event, context):
     for path in file_paths:
         s3.upload_file(
             Filename=f"/tmp/{path}",
-            Bucket=output_bucket_name,
+            Bucket=OUTPUT_BUCKET,
             Key=f"{key}/{path}",
         )
 
-    return {"output-bucket": output_bucket_name, "output-folder": key, "output-paths": file_paths}
+    return {"output-bucket": OUTPUT_BUCKET, "output-folder": key, "output-paths": file_paths}
