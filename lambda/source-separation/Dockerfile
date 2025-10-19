@@ -21,14 +21,12 @@ ENV MODEL_PATH=app/pretrained_models
 ARG FUNCTION_DIR
 RUN mkdir -p ${FUNCTION_DIR}
 
-# Install pip dependencies from reqirements file
+# Install pip dependencies from requirements file
 COPY requirements.txt .
 RUN pip install \
     --target ${FUNCTION_DIR} \
     -r requirements.txt
 
-# Copy app files
-COPY app/ ${FUNCTION_DIR}
 
 # Pull clean image for second stage
 FROM ${BASE}
@@ -43,6 +41,9 @@ RUN apt-get update && \
 ARG FUNCTION_DIR
 WORKDIR ${FUNCTION_DIR}
 COPY --from=build-image ${FUNCTION_DIR} ${FUNCTION_DIR}
+
+# Copy app files
+COPY app/ ${FUNCTION_DIR}
 
 #Declare entry points for the function and the lambda handler command
 ENTRYPOINT [ "/usr/local/bin/python", "-m", "awslambdaric" ]
