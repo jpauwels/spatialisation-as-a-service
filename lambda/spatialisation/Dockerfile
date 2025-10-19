@@ -15,7 +15,6 @@ RUN yum clean -y metadata
 RUN yum install -y libcurl-devel
 RUN yum install -y openssl-devel
 RUN yum install -y pulseaudio-libs-devel
-RUN pip3 install awscli
 
 # Fetch and install AWS Lambda Runtime for C++
 RUN git clone https://github.com/awslabs/aws-lambda-cpp-runtime.git && \
@@ -57,7 +56,6 @@ RUN mkdir -p src
 ADD src ./src/
 ADD utils ./src/
 COPY CMakeLists.txt ./src/
-COPY config .aws/
 
 # Build source files
 RUN mkdir build && cd build && \
@@ -65,7 +63,7 @@ RUN mkdir build && cd build && \
     -DBUILD_SHARED_LIBS=OFF \
     -DCMAKE_INSTALL_PREFIX=/usr
 
-#Build AWS deployment package
+# Build AWS deployment package
 RUN cd build && make && make aws-lambda-package-spatialisation
 
 # Unzip deployment package

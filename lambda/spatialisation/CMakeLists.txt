@@ -22,14 +22,12 @@ file(GLOB_RECURSE SOURCES
         ../3dti_AudioToolkit/3dti_ResourceManager/BRIR/*.cpp
         )
 
-if (NOT TARGET spdlog)
-    find_package(spdlog REQUIRED)
-endif ()
-
 add_executable(${PROJECT_NAME} "main.cpp" "spatialiser.cpp" "verify_request.cpp" "lambda_handler.cpp" ${SOURCES})
 
 find_package(aws-lambda-runtime REQUIRED)
 find_package(AWSSDK COMPONENTS s3 transfer)
+find_package(ZLIB REQUIRED)
+find_package(spdlog REQUIRED)
 
 target_link_libraries(${PROJECT_NAME}
         PRIVATE
@@ -39,9 +37,8 @@ target_link_libraries(${PROJECT_NAME}
         netcdf
         hdf5_hl
         hdf5
-        netcdf
         netcdf_c++4
-        z
+        ZLIB::ZLIB
         spdlog::spdlog
         )
 
