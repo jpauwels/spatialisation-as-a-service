@@ -47,7 +47,7 @@ function Scene(props: SceneProps) {
           {
             props.fileLabels.map((label, index) => {
               return (
-                <group>
+                <group key={label}>
                   <Box scale={[3, 3, 3]} name={label} position={[
                     -props.spatialParams[props.fileLabels[index]]['Y'],
                     -props.spatialParams[props.fileLabels[index]]['X'],

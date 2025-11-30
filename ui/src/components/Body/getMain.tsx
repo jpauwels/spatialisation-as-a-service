@@ -139,7 +139,7 @@ export function GetMain(
               }
               {fileUrls.map((url, index) => {
                 return (
-                  <Stack sx={{ padding: 2, justifyItems: 'center' }} spacing={2}>
+                  <Stack key={url} sx={{ padding: 2, justifyItems: 'center' }} spacing={2}>
                     <Typography>{fileLabels[index]}</Typography>
                     <FormGroup row={true}>
                       <FormControlLabel
