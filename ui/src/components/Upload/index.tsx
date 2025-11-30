@@ -142,7 +142,7 @@ function Uploader(props: UploaderProps) {
       width: '60%',
       padding: 100
     }}>
-      <Stepper activeStep={activeStep}>
+      <Stepper activeStep={activeStep} orientation="vertical">
         {steps.map((label, index) => {
           const stepProps: { completed?: boolean } = {};
           const labelProps: {
