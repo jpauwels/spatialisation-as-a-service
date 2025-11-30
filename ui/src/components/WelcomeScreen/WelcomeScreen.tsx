@@ -4,6 +4,10 @@ import styled from 'styled-components';
 import { Button } from '@mui/material';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
 import Onboarding from './Onboarding';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 
 interface WelcomeScreenProps {
   onClick: () => void;
