@@ -3,7 +3,9 @@ import {v4 as uuidv4} from "uuid";
 import {
     CreateQueueCommand,
     DeleteMessageCommand,
+    QueueAttributeName,
     ReceiveMessageCommand,
+    ReceiveMessageCommandInput,
     ReceiveMessageResult
 } from "@aws-sdk/client-sqs";
 import {sqsClient} from "./libs/sqsClient";
@@ -69,8 +71,8 @@ async function createSQSQueue(uuid: string) {
 }
 
 async function getMessage(queueURL: string | undefined): Promise<ReceiveMessageResult> {
-    const params = {
-        AttributeNames: ["SentTimestamp"],
+    const params: ReceiveMessageCommandInput = {
+        AttributeNames: ["SentTimestamp" as QueueAttributeName],
         MaxNumberOfMessages: 1,
         MessageAttributeNames: ["All"],
         QueueUrl: queueURL,
