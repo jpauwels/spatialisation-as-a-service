@@ -68,7 +68,7 @@ function Uploader(props: UploaderProps) {
     }
 
     const params = {
-      Bucket: 'saas-deposit',
+      Bucket: process.env.REACT_APP_UPLOAD_BUCKET,
       Key: 'upload_' + props.uuid,
       Body: file
     };

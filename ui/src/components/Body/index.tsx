@@ -60,7 +60,7 @@ function Body(props: BodyProps) {
         return (message?.Messages && message?.Messages[0].Body) ? message.Messages[0].Body : '';
       }).then((str) => {
         const json: any = JSON.parse(str);
-        setOutputUrl('https://saas-output.s3.eu-west-2.amazonaws.com/' + json['lambdaResult']['Payload']['output-folder'] + '_result.wav');
+        setOutputUrl('https://' + process.env.REACT_APP_OUTPUT_BUCKET + '.s3.eu-west-2.amazonaws.com/' + json['lambdaResult']['Payload']['output-folder'] + '_result.wav');
       });
     }
   }, [submitted]);
