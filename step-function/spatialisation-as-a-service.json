@@ -32,7 +32,7 @@
       "Type": "Task",
       "Resource": "arn:aws:states:::lambda:invoke",
       "Parameters": {
-        "FunctionName": "arn:aws:lambda:eu-west-2:024679833031:function:saas-source-separation:$LATEST",
+        "FunctionName": "arn:aws:lambda:eu-west-2:390685732699:function:spleeter:$LATEST",
         "Payload.$": "$"
       },
       "Retry": [
@@ -93,7 +93,7 @@
       "Resource": "arn:aws:states:::lambda:invoke",
       "Parameters": {
         "Payload.$": "$",
-        "FunctionName": "arn:aws:lambda:eu-west-2:024679833031:function:saas-spatialisation:$LATEST"
+        "FunctionName": "arn:aws:lambda:eu-west-2:390685732699:function:3dti:$LATEST"
       },
       "Retry": [
         {
