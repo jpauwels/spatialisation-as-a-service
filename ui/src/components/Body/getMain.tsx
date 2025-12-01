@@ -124,19 +124,6 @@ export function GetMain(
             <MemoHowlerGroup audioURLS={fileUrls} mutes={mutedChannels} spatialParams={spatialParams}
                              fileLabels={fileLabels} />
             <div style={{ width: 400, justifyContent: 'center'}}>
-              {(taskToken) ?
-                <Button
-                  disabled={buttonClicked}
-                  variant={'contained'}
-                  onClick={() => {
-                    setButtonClicked(true);
-                    handleSubmit();
-                  }}
-                  sx={{margin: '2', display: 'block'}}
-                >
-                  Render High-Quality 3D Audio
-                </Button> : <p>Waiting for task token</p>
-              }
               {fileUrls.map((url, index) => {
                 return (
                   <Stack key={url} sx={{ padding: 2, justifyItems: 'center' }} spacing={2}>
@@ -251,6 +238,20 @@ export function GetMain(
                   </Stack>
                 );
               })}
+              {(taskToken) ?
+                <div style={{ 'display': 'flex', 'justifyContent': 'center' }}>
+                  <Button
+                    disabled={buttonClicked}
+                    variant={'contained'}
+                    onClick={() => {
+                      setButtonClicked(true);
+                      handleSubmit();
+                    }}
+                  >
+                    Render High-Quality 3D Audio
+                  </Button>
+                </div>
+              : <p>Waiting for task token</p>}
             </div>
           </CardContent>
         </Card>
